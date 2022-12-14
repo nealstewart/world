@@ -118,6 +118,18 @@ type Rain = {
   velocity: Vector2d;
 };
 
+type PlantPart = {
+  extent: Vector2d;
+  child: PlantPart;
+};
+
+type Plant = {
+  // The location in radian units. All plants are on the planet, so
+  // it's just the location relative to the surface of the circle.
+  rotation: number;
+  trunk: PlantPart;
+};
+
 interface WorldState {
   lastTick: Date;
   tick: number;
@@ -128,6 +140,7 @@ interface WorldState {
     rain: Array<Rain>;
     ground: number;
   };
+  planets: Plant[];
 }
 
 const ticksInADay = 100;
